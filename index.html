@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+</head>
+<body>
+    <style>
+
+        .book-info{
+            margin:5px 0;
+            display:block;
+        }
+
+        .book-info-label{
+            display: inline-block;
+            width: 120px;
+        }
+
+        .book-info-card{
+            display: flex;
+            max-width: 700px;
+        }
+
+        .book-img{
+            height: 200px;
+            margin-right:20px;
+        }
+
+        .card{
+        }
+
+        .container{
+            padding:20px;
+            max-width: 900px;
+            margin: 10px auto;
+        }
+
+        .deskripsi{
+            display: inline-block;
+        }
+/* 
+        .info-deskripsi{
+            display: flex;
+        } */
+
+        .book-metadata-sans-deskripsi{
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .page-heading{
+            display: flex;
+            margin:20px 0;
+            justify-content: space-between;
+        }
+
+    </style>
+<!-- <h1>Hello world</h1> -->
+    <nav style="background: #132743" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
+    </nav>
+        <div class="container">
+            <div class="page-heading">
+                <h1>Books</h1>
+                <button class="btn btn-danger">Tambah Buku</button>
+            </div>
+            <div class="card">
+                <div class="card-body book-info-card">
+                    <img class="book-img " src="boneshaker.jpg" alt="Card image cap">
+                    <div>
+                        <div class="book-metadata-sans-deskripsi">
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Judul</b></span> <span>Boneshaker</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Pengarang</b></span> <span>Cherie Priest</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Tahun terbit</b></span> <span>2009</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Jumlah halaman</b></span> <span>360</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Mulai Membaca</b></span> <span>16 Sept 2020</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Halaman Terbaca</b></span> <span>67</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="book-info info-deskripsi">
+                                <span class="book-info-label"><b>Deskripsi</b></span> <span class="deskripsi text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum est qui veritatis quod asperiores veniam, mollitia rerum aut tempore maiores quidem maxime quisquam repudiandae delectus suscipit! Et necessitatibus nulla totam?</span>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-success">Edit Info Buku</button>
+                            <button class="btn btn-info">Lihat catatan pembacaan</button>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body book-info-card">
+                    <img class="book-img " src="boneshaker.jpg" alt="Card image cap">
+                    <div>
+                        <div class="book-metadata-sans-deskripsi">
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Judul</b></span> <span>Boneshaker</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Pengarang</b></span> <span>Cherie Priest</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Tahun terbit</b></span> <span>2009</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Jumlah halaman</b></span> <span>360</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Mulai Membaca</b></span> <span>16 Sept 2020</span>
+                            </div>
+                            <div class="book-info">
+                                <span class="book-info-label"><b>Halaman Terbaca</b></span> <span>67</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="book-info info-deskripsi">
+                                <span class="book-info-label"><b>Deskripsi</b></span> <span class="deskripsi text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum est qui veritatis quod asperiores veniam, mollitia rerum aut tempore maiores quidem maxime quisquam repudiandae delectus suscipit! Et necessitatibus nulla totam?</span>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-success">Edit Info Buku</button>
+                            <button class="btn btn-info">Lihat catatan pembacaan</button>
+                       </div>
+                    </div>
+                </div>
+            </div>                 
+        </div>
+        <!-- <img class="card-img-top" src="boneshaker.jpg" alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            <!-- <div class="book-info">
+                <span class="book-info-label"><b>Judul</b></span> <span>Boneshaker</span>
+            </div>
+            <div class="book-info">
+                <span class="book-info-label"><b>Pengarang</b></span> <span>Cherie Priest</span>
+            </div>
+            <div class="book-info">
+                <span class="book-info-label"><b>Tahun terbit</b></span> <span>2009</span>
+            </div>
+            <div class="book-info">
+                <span class="book-info-label"><b>Jumlah halaman</b></span> <span>360</span>
+            </div>
+        </div>  -->
+    </div>
+<script src="bootstrap.bundle.js"></script>
+</body>
+</html>
