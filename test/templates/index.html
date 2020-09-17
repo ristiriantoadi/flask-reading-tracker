@@ -4,62 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <style>
-
-        .book-info{
-            margin:5px 0;
-            display:block;
-        }
-
-        .book-info-label{
-            display: inline-block;
-            width: 120px;
-        }
-
-        .book-info-card{
-            display: flex;
-            max-width: 700px;
-        }
-
-        .book-img{
-            height: 200px;
-            margin-right:20px;
-        }
-
-        .card{
-        }
-
-        .container{
-            padding:20px;
-            max-width: 900px;
-            margin: 10px auto;
-        }
-
-        .deskripsi{
-            display: inline-block;
-        }
-/* 
-        .info-deskripsi{
-            display: flex;
-        } */
-
-        .book-metadata-sans-deskripsi{
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-        }
-
-        .page-heading{
-            display: flex;
-            margin:20px 0;
-            justify-content: space-between;
-        }
-
-    </style>
 <!-- <h1>Hello world</h1> -->
     <nav style="background: #132743" class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">ReadingTracker</a>
@@ -103,7 +51,7 @@
             </div>
             <div class="card">
                 <div class="card-body book-info-card">
-                    <img class="book-img " src="boneshaker.jpg" alt="Card image cap">
+                    <img class="book-img " src="{{ url_for('static', filename='boneshaker.jpg') }}" alt="Card image cap">
                     <div>
                         <div class="book-metadata-sans-deskripsi">
                             <div class="book-info">
@@ -142,7 +90,7 @@
             </div>
             <div class="card">
                 <div class="card-body book-info-card">
-                    <img class="book-img " src="boneshaker.jpg" alt="Card image cap">
+                    <img class="book-img " src="{{ url_for('static', filename='boneshaker.jpg') }}" alt="Card image cap">
                     <div>
                         <div class="book-metadata-sans-deskripsi">
                             <div class="book-info">
@@ -199,6 +147,6 @@
             </div>
         </div>  -->
     </div>
-<script src="bootstrap.bundle.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap.bundle.js') }}"></script>
 </body>
 </html>
