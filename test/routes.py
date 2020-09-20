@@ -14,6 +14,7 @@ def login():
         if user is not None:
             session['username'] = user['username']
             return redirect(url_for('index'))
+        flash(f'username/password salah','danger')
         return redirect(url_for('login'))    
     return render_template("login.html")
 
@@ -30,9 +31,15 @@ def register():
         password = request.form['password']
 
         userCollection = mongo.db.users
+
+        user=userCollection.find_one({'username':username})
+        if user is not None:
+            flash(f'Username sudah terpakai','danger')
+            return render_template("register.html")
         userCollection.insert({'username':username,'password':password})
         session['username'] = username
-        return redirect(url_for('index'))   
+        return redirect(url_for('index'))
+        # flash(f'Account wrong','danger')   
     return render_template("register.html")
 
 @app.route('/') 

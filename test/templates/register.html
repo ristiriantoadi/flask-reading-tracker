@@ -16,19 +16,31 @@
       <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
       <h1>ReadingTracker</h1>
       <!-- <h3 class="h3 mb-3 font-weight-normal">Login</h3> -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {%endif%}
+      {% endwith %}
+      <div style="display: none;" id="alert-confirm-password" class="alert alert-danger" role="alert">
+        Konfirmasi password salah
+      </div>
       <div class="form-group">
         <!-- <label for="exampleInputEmail1">Email</label> -->
-        <input type="text" class="form-control" name="username" placeholder="Username">
+        <input required type="text" class="form-control" name="username" placeholder="Username">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
       <div class="form-group">
         <!-- <label for="exampleInputEmail1">Password</label> -->
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        <input required type="password" class="form-control" name="password" id="password" placeholder="Password">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
       <div class="form-group">
         <!-- <label for="exampleInputEmail1">Password</label> -->
-        <input type="password" name="confirm-password" id="confirm-password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Konfirmasi Password">
+        <input required type="password" name="confirm-password" id="confirm-password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Konfirmasi Password">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
       <!-- <label for="inputEmail" class="sr-only">Email address</label>
@@ -56,8 +68,11 @@
           var confirmPassword=document.getElementById('confirm-password').value
           if (password == confirmPassword){
             document.getElementById('form-register').submit()
+          }else{
+            document.getElementById('alert-confirm-password').style.display="block";
           }
         })
+
       }
       // document.body.addEventListener('load',()=>{
       //   console.log("halo")
