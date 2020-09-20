@@ -45,5 +45,20 @@ def register():
 def index(): 
     if 'username' in session:
         # return "logged in as "+session['username']
-        return render_template("index.html",username=session['username'])
+        books=[{ 
+            'title' : 'Boneshaker',
+            'author' : 'lorem ipsum',
+            'pages' : 250,
+            'start_reading' : '11/10/2020',
+            'status' : 'Sedang dibaca'
+            }, 
+            { 
+            'title' : 'Harry Potter',
+            'author' : 'J.K Rowling',
+            'pages' : 400,
+            'start_reading' : '11/9/2020',
+            'status' : 'Sudah dibaca'
+            }] 
+
+        return render_template("index.html",username=session['username'],books=books)
     return redirect(url_for('login'))
