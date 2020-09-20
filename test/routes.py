@@ -62,3 +62,9 @@ def index():
 
         return render_template("index.html",username=session['username'],books=books)
     return redirect(url_for('login'))
+
+@app.route('/tambah_buku') 
+def tambah_buku():
+    if 'username' in session:
+        return render_template("tambah buku.html",username=session['username'])
+    return redirect(url_for('login')) 
