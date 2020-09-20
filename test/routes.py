@@ -16,7 +16,7 @@ def login():
             return redirect(url_for('index'))
         flash(f'username/password salah','danger')
         return redirect(url_for('login'))    
-    return render_template("login.html")
+    return render_template("login.html",title="ReadingTracker | Login")
 
 @app.route('/logout') 
 def logout():
@@ -39,8 +39,7 @@ def register():
         userCollection.insert({'username':username,'password':password})
         session['username'] = username
         return redirect(url_for('index'))
-        # flash(f'Account wrong','danger')   
-    return render_template("register.html")
+    return render_template("register.html", title="ReadingTracker | Register")
 
 @app.route('/') 
 def index(): 

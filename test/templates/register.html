@@ -1,92 +1,61 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-    <title>Signin Template for Bootstrap</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  </head>
-  <body class="text-center">
-    <form id="form-register" method="POST" class="form-signin">
-      <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
-      <h1>ReadingTracker</h1>
-      <!-- <h3 class="h3 mb-3 font-weight-normal">Login</h3> -->
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{category}}">
-                    {{message}}
-                </div>
-            {% endfor %}
-        {%endif%}
-      {% endwith %}
-      <div style="display: none;" id="alert-confirm-password" class="alert alert-danger" role="alert">
-        Konfirmasi password salah
-      </div>
-      <div class="form-group">
-        <!-- <label for="exampleInputEmail1">Email</label> -->
-        <input required type="text" class="form-control" name="username" placeholder="Username">
-        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-      </div>
-      <div class="form-group">
-        <!-- <label for="exampleInputEmail1">Password</label> -->
-        <input required type="password" class="form-control" name="password" id="password" placeholder="Password">
-        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-      </div>
-      <div class="form-group">
-        <!-- <label for="exampleInputEmail1">Password</label> -->
-        <input required type="password" name="confirm-password" id="confirm-password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Konfirmasi Password">
-        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-      </div>
-      <!-- <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <div class="checkbox mb-3"> -->
-        <!-- <label> -->
-          <!-- <input type="checkbox" value="remember-me"> Remember me -->
-        <!-- </label> -->
-      <!-- </div> -->
-      <button class="btn btn-lg btn-primary btn-block" id="register" type="submit">Register</button>
-      <div style="margin: 10px;">
-        <a href="{{ url_for('login') }}">Login</a>
-      </div>
-      <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p> -->
-    </form>
-    <script>
-      console.log("halo")
-      document.body.onload = ()=>{
-        console.log("halo")
-        document.getElementById('form-register').addEventListener('submit',(event)=>{
-          event.preventDefault();
-          var password=document.getElementById('password').value
-          var confirmPassword=document.getElementById('confirm-password').value
-          if (password == confirmPassword){
-            document.getElementById('form-register').submit()
-          }else{
-            document.getElementById('alert-confirm-password').style.display="block";
-          }
-        })
-
+{% extends "base.html" %}
+{%block content %}
+  <form class="text-center form-signin" id="form-register" method="POST" class="form-signin">
+    <!-- <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+    <h1>ReadingTracker</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{category}}">
+                {{message}}
+            </div>
+        {% endfor %}
+    {%endif%}
+  {% endwith %}
+  <div style="display: none;" id="alert-confirm-password" class="alert alert-danger" role="alert">
+    Konfirmasi password salah
+  </div>
+  <div class="form-group">
+    <input required type="text" class="form-control" name="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <input required type="password" class="form-control" name="password" id="password" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <input required type="password" name="confirm-password" id="confirm-password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Konfirmasi Password">
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" id="register" type="submit">Register</button>
+  <div style="margin: 10px;">
+    <a href="{{ url_for('login') }}">Login</a>
+  </div>
+</form>
+<script>
+  console.log("halo")
+  document.body.onload = ()=>{
+    console.log("halo")
+    document.getElementById('form-register').addEventListener('submit',(event)=>{
+      event.preventDefault();
+      var password=document.getElementById('password').value
+      var confirmPassword=document.getElementById('confirm-password').value
+      if (password == confirmPassword){
+        document.getElementById('form-register').submit()
+      }else{
+        document.getElementById('alert-confirm-password').style.display="block";
       }
-      // document.body.addEventListener('load',()=>{
-      //   console.log("halo")
-      //   document.getElementById('form-register').addEventListener('onsubmit',(event)=>{
-      //     event.preventDefault();
-      //     var password=document.getElementById('password').value
-      //     var confirmPassword=document.getElementById('confirmPassword').value
+    })
 
-      //     if (password == confirmPassword){
-      //       console.log("yes")
-      //     }
-      //   })
-      // })
-    </script>
-    <!-- <script src="{{ url_for('static', filename='bootstrap.bundle.js') }}"></script> -->
-  </body>
-</html>
+  }
+  document.body.addEventListener('load',()=>{
+    console.log("halo")
+    document.getElementById('form-register').addEventListener('onsubmit',(event)=>{
+      event.preventDefault();
+      var password=document.getElementById('password').value
+      var confirmPassword=document.getElementById('confirmPassword').value
+
+      if (password == confirmPassword){
+        console.log("yes")
+      }
+    })
+  })
+</script>
+{%endblock content%}
