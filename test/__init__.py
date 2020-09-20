@@ -8,7 +8,7 @@ app.config['SECRET_KEY']='49e244cf65248712dc2ce77e4196f012'
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///site.db'
 db = SQLAlchemy(app)
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/test"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/readingtracker"
 mongo = PyMongo(app)
 
 from test import routes
