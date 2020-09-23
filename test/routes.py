@@ -73,6 +73,34 @@ def hapus_buku(id):
         book=booksCollection.find_one({'_id':ObjectId(str(id))})
         booksCollection.remove(book)
         return redirect(url_for('index'))
+        
+@app.route('/buku/edit/<id>',methods=['GET','POST']) 
+def edit_buku(id):
+    if 'username' in session:
+        if request.method == "POST":
+            
+            judul = request.form['judul']
+            pengarang = request.form['pengarang']
+            mulaiBaca = request.form['mulai-baca']
+            jumlahHalaman = request.form['jumlah-halaman']
+            deskripsi = request.form['deskripsi']
+            status = request.form['status']
+
+            books = mongo.db.books
+            book=books.find_one({'_id':ObjectId(str(id))})
+            book['judul'] = judul
+            book['pengarang'] = pengarang
+            book['mulaiBaca'] = mulaiBaca
+            book['deskripsi'] = deskripsi
+            book['status'] = status
+            book['jumlahHalaman'] = jumlahHalaman
+            books.save(book)
+            return redirect(url_for('index'))
+        
+        books = mongo.db.books
+        book=books.find_one({'_id':ObjectId(str(id))})
+
+        return render_template("edit buku.html",username=session['username'],book=book)
 
 @app.route('/buku/tambah',methods=['GET', 'POST']) 
 def tambah_buku():
