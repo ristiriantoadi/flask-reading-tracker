@@ -6,7 +6,7 @@
 .book-info{
     margin:5px 0;
     display:block;
-    width: 300px;
+    /* width: 300px; */
 }
 
 .book-info-label{
@@ -21,7 +21,7 @@
 
 .book-info-card{
     display: flex;
-    max-width: 700px;
+    /* max-width: 700px; */
 }
 
 .book-img{
@@ -40,11 +40,12 @@
 
 .deskripsi{
     display: inline-block;
+    /* width: 100%; */
 }
-/* 
+
 .info-deskripsi{
-    display: flex;
-} */
+    width: 100%;
+}
 
 .book-metadata-sans-deskripsi{
     height: 150px;

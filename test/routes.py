@@ -1,6 +1,7 @@
-from flask import render_template,url_for,flash,redirect,request,session
+from flask import render_template,url_for,flash,redirect,request,session,send_from_directory
 from test import app, mongo
 import os
+from bson.objectid import ObjectId
 # from .models import User,Post
 
 @app.route('/login',methods=['GET', 'POST']) 
@@ -65,13 +66,22 @@ def index():
         return render_template("index.html",username=session['username'],books=books)
     return redirect(url_for('login'))
 
-@app.route('/tambah_buku',methods=['GET', 'POST']) 
+@app.route('/buku/hapus/<id>',methods=['GET']) 
+def hapus_buku(id):
+    if 'username' in session:
+        booksCollection = mongo.db.books
+        book=booksCollection.find_one({'_id':ObjectId(str(id))})
+        booksCollection.remove(book)
+        return redirect(url_for('index'))
+
+@app.route('/buku/tambah',methods=['GET', 'POST']) 
 def tambah_buku():
     if 'username' in session:
         if request.method=="POST":
             judul = request.form['judul']
             pengarang = request.form['pengarang']
             mulaiBaca = request.form['mulai-baca']
+            jumlahHalaman = request.form['jumlah-halaman']
             deskripsi = request.form['deskripsi']
             status = request.form['status']
 
@@ -81,24 +91,18 @@ def tambah_buku():
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
                 books = mongo.db.books
-
-            # user=userCollection.find_one({'username':username})
-            # if user is not None:
-            #     flash(f'Username sudah terpakai','danger')
-            #     return render_template("register.html")
                 books.insert({'username':session['username'],
                         'judul':judul,
                         'pengarang':pengarang,
                         'mulaiBaca':mulaiBaca,
                         'deskripsi':deskripsi,
                         'status':status,
+                        'jumlahHalaman':jumlahHalaman,
                         'cover':filename})
-            # app.logger.info('Mulai baca '+str(mulaiBaca))
+                return redirect(url_for('index'))
+
         return render_template("tambah buku.html",username=session['username'])
     return redirect(url_for('login')) 
-
-
-from flask import send_from_directory
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

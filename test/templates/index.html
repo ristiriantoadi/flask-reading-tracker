@@ -4,13 +4,13 @@
         <div class="container">
             <div class="page-heading">
                 <h1>Buku</h1>
-                <button class="btn btn-primary"><a href="/tambah_buku">Tambah Buku</a></button>
+                <button class="btn btn-primary"><a href="/buku/tambah">Tambah Buku</a></button>
             </div>
             {% for book in books %}
                 <div class="card">
                     <div class="card-body book-info-card">
                         <img class="book-img " src="{{ url_for('uploaded_file', filename=book.cover)}}" alt="Card image cap">
-                        <div>
+                        <div style="width: 100%;">
                             <div class="book-metadata-sans-deskripsi">
                                 <div class="book-info">
                                     <span class="book-info-label"><b>Judul</b></span> <span>{{book.judul}}</span>
@@ -22,20 +22,21 @@
                                     <span class="book-info-label"><b>Jumlah halaman</b></span> <span>{{book.jumlahHalaman}}</span>
                                 </div>
                                 <div class="book-info">
-                                    <span class="book-info-label"><b>Mulai Membaca</b></span> <span>{{book.mulaiBaca}}</span>
+                                    <span class="book-info-label"><b>Mulai Baca</b></span> <span>{{book.mulaiBaca}}</span>
                                 </div>
                                 <div class="book-info">
                                     <span class="book-info-label"><b>Status</b></span> <span>{{book.status}}</span>
                                 </div>
                             </div>
-                            <div>
-                                <div class="book-info info-deskripsi">
+                            <div class="info-deskripsi">
+                                <div class="book-info">
                                     <span class="book-info-label"><b>Deskripsi</b></span> <span class="deskripsi text-left">{{book.deskripsi}}</span>
                                 </div>
                             </div>
                             <div class="buttons">
                                 <button class="btn btn-success">Edit Info Buku</button>
                                 <button class="btn btn-info">Lihat catatan pembacaan</button>
+                                <button class="btn btn-danger"><a href="/buku/hapus/{{book._id}}">Hapus buku</a></button>
                         </div>
                         </div>
                     </div>
