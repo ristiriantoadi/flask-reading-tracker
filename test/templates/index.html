@@ -9,20 +9,20 @@
             {% for book in books %}
                 <div class="card">
                     <div class="card-body book-info-card">
-                        <img class="book-img " src="{{ url_for('static', filename='boneshaker.jpg') }}" alt="Card image cap">
+                        <img class="book-img " src="{{ url_for('uploaded_file', filename=book.cover)}}" alt="Card image cap">
                         <div>
                             <div class="book-metadata-sans-deskripsi">
                                 <div class="book-info">
-                                    <span class="book-info-label"><b>Judul</b></span> <span>{{book.title}}</span>
+                                    <span class="book-info-label"><b>Judul</b></span> <span>{{book.judul}}</span>
                                 </div>
                                 <div class="book-info">
-                                    <span class="book-info-label"><b>Pengarang</b></span> <span>{{book.author}}</span>
+                                    <span class="book-info-label"><b>Pengarang</b></span> <span>{{book.pengarang}}</span>
                                 </div>
                                 <div class="book-info">
-                                    <span class="book-info-label"><b>Jumlah halaman</b></span> <span>{{book.pages}}</span>
+                                    <span class="book-info-label"><b>Jumlah halaman</b></span> <span>{{book.jumlahHalaman}}</span>
                                 </div>
                                 <div class="book-info">
-                                    <span class="book-info-label"><b>Mulai Membaca</b></span> <span>{{book.start_reading}}</span>
+                                    <span class="book-info-label"><b>Mulai Membaca</b></span> <span>{{book.mulaiBaca}}</span>
                                 </div>
                                 <div class="book-info">
                                     <span class="book-info-label"><b>Status</b></span> <span>{{book.status}}</span>
@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 <div class="book-info info-deskripsi">
-                                    <span class="book-info-label"><b>Deskripsi</b></span> <span class="deskripsi text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum est qui veritatis quod asperiores veniam, mollitia rerum aut tempore maiores quidem maxime quisquam repudiandae delectus suscipit! Et necessitatibus nulla totam?</span>
+                                    <span class="book-info-label"><b>Deskripsi</b></span> <span class="deskripsi text-left">{{book.deskripsi}}</span>
                                 </div>
                             </div>
                             <div class="buttons">

@@ -1,5 +1,6 @@
 from flask import render_template,url_for,flash,redirect,request,session
 from test import app, mongo
+import os
 # from .models import User,Post
 
 @app.route('/login',methods=['GET', 'POST']) 
@@ -59,12 +60,47 @@ def index():
             'start_reading' : '11/9/2020',
             'status' : 'Sudah dibaca'
             }] 
-
+        booksCollection = mongo.db.books
+        books = booksCollection.find({'username':session['username']})
         return render_template("index.html",username=session['username'],books=books)
     return redirect(url_for('login'))
 
-@app.route('/tambah_buku') 
+@app.route('/tambah_buku',methods=['GET', 'POST']) 
 def tambah_buku():
     if 'username' in session:
+        if request.method=="POST":
+            judul = request.form['judul']
+            pengarang = request.form['pengarang']
+            mulaiBaca = request.form['mulai-baca']
+            deskripsi = request.form['deskripsi']
+            status = request.form['status']
+
+            file = request.files['cover']
+            if file:
+                filename = file.filename
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+                books = mongo.db.books
+
+            # user=userCollection.find_one({'username':username})
+            # if user is not None:
+            #     flash(f'Username sudah terpakai','danger')
+            #     return render_template("register.html")
+                books.insert({'username':session['username'],
+                        'judul':judul,
+                        'pengarang':pengarang,
+                        'mulaiBaca':mulaiBaca,
+                        'deskripsi':deskripsi,
+                        'status':status,
+                        'cover':filename})
+            # app.logger.info('Mulai baca '+str(mulaiBaca))
         return render_template("tambah buku.html",username=session['username'])
     return redirect(url_for('login')) 
+
+
+from flask import send_from_directory
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)

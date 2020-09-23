@@ -6,11 +6,17 @@
 .book-info{
     margin:5px 0;
     display:block;
+    width: 300px;
 }
 
 .book-info-label{
     display: inline-block;
     width: 120px;
+}
+
+.book-info span{
+    /* display: inline; */
+    word-wrap: break-word;
 }
 
 .book-info-card{
@@ -51,4 +57,14 @@
     display: flex;
     margin:20px 0;
     justify-content: space-between;
+}
+
+button a{
+    text-decoration: none;
+    color: white;
+}
+
+button a:hover{
+    text-decoration: none;
+    color: white;
 }
