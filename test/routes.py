@@ -66,6 +66,24 @@ def index():
         return render_template("index.html",username=session['username'],books=books)
     return redirect(url_for('login'))
 
+@app.route('/buku/<id>/pembacaan',methods=['GET'])
+def pembacaan(id):
+    if 'username' in session:
+        notes=[{ 
+            'tanggal':"11-10-2020",
+            'konten' : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ea iure assumenda itaque amet laboriosam dicta, aliquam placeat alias omnis magnam, error voluptate deleniti eaque, a asperiores ducimus magni? Consectetur."
+            },
+            { 
+            'tanggal':"10-20-2020",
+            'konten' : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ea iure assumenda itaque amet laboriosam dicta, aliquam placeat alias omnis magnam, error voluptate deleniti eaque, a asperiores ducimus magni? Consectetur."
+            }]
+        booksCollection = mongo.db.books
+        book=booksCollection.find_one({'_id':ObjectId(str(id))})
+        judul=book['judul']
+        return render_template("pembacaan.html",username=session['username'],notes=notes,judul=judul)
+    return redirect(url_for('login'))
+
+
 @app.route('/buku/hapus/<id>',methods=['GET']) 
 def hapus_buku(id):
     if 'username' in session:
