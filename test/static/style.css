@@ -58,6 +58,7 @@
     display: flex;
     margin:20px 0;
     justify-content: space-between;
+    align-items: center;
 }
 
 button a{
@@ -68,4 +69,8 @@ button a{
 button a:hover{
     text-decoration: none;
     color: white;
+}
+
+.tambah-pembacaan{
+    max-height:200px;
 }

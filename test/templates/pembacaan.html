@@ -4,16 +4,16 @@
         <div class="container">
             <div class="page-heading">
                 <h1>Catatan Pembacaan <small class="text-muted">{{judul}}</small></h1>
-                <button class="btn btn-primary">Tambah Catatan</button>
+                <button class="tambah-pembacaan btn btn-primary"><a href="/buku/{{book._id}}/pembacaan/tambah">Tambah Catatan</a></button>
             </div>
             {% for note in notes %}
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{note.tanggal}}</h5>
-                        <p>{{note.konten}}.</p>
+                        <h5 class="card-title">{{note.tanggalPembacaan}}</h5>
+                        <p>{{note.catatan}}.</p>
                         <div class="buttons">
-                            <button class="btn btn-success">Edit Catatan</button>
-                            <button class="btn btn-danger">Hapus Catatan</button>
+                            <button class="btn btn-success"><a href="/buku/{{book._id}}/pembacaan/edit/{{note._id}}">Edit Catatan</a></button>
+                            <button class="btn btn-danger"><a href="/buku/{{book._id}}/pembacaan/hapus/{{note._id}}">Hapus Catatan</a></button>
                         </div>
                     </div>
                 </div>       

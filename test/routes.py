@@ -66,21 +66,72 @@ def index():
         return render_template("index.html",username=session['username'],books=books)
     return redirect(url_for('login'))
 
+@app.route('/buku/<id>/pembacaan/hapus/<idCatatan>',methods=['GET','POST'])
+def hapus_pembacaan(id,idCatatan):
+    if 'username' in session:
+        notesCollection = mongo.db.notes
+        note=notesCollection.find_one({'_id':ObjectId(str(idCatatan))})
+        notesCollection.remove(note)
+        return redirect(url_for('pembacaan',id=id))
+
+@app.route('/buku/<id>/pembacaan/edit/<idCatatan>',methods=['GET','POST'])
+def edit_pembacaan(id,idCatatan):
+    if 'username' in session:
+        # app.logger.info("idCatatan: "+str(idCatatan))
+        if request.method == "POST":
+            tanggalPembacaan = request.form['tanggal-pembacaan']
+            catatan = request.form['catatan']
+
+            notes = mongo.db.notes
+            note=notes.find_one({'_id':ObjectId(str(idCatatan))})
+            note['tanggalPembacaan'] = tanggalPembacaan
+            note['catatan'] = catatan
+            notes.save(note)
+            return redirect(url_for('pembacaan',id=id))
+        
+        books = mongo.db.books
+        book=books.find_one({'_id':ObjectId(str(id))})
+
+        notes = mongo.db.notes
+        note = notes.find_one({'_id':ObjectId(str(idCatatan))})
+
+        booksCollection = mongo.db.books
+        book=booksCollection.find_one({'_id':ObjectId(str(id))})
+        judul=book['judul']        
+        return render_template("edit catatan.html",note=note,judul=judul,username=session['username'])
+    return redirect(url_for('login'))
+
+@app.route('/buku/<id>/pembacaan/tambah',methods=['GET','POST'])
+def tambah_pembacaan(id):
+    if 'username' in session:
+        if request.method=="POST":
+            # judul = request.form['judul']
+            tanggalPembacaan = request.form['tanggal-pembacaan']
+            catatan = request.form['catatan']
+            notes = mongo.db.notes
+            notes.insert({'book_id':id,
+                        'tanggalPembacaan':tanggalPembacaan,
+                        'catatan':catatan})
+            return redirect(url_for('pembacaan',id=id))
+            # url_for('static', filename='bootstrap.css')
+
+        booksCollection = mongo.db.books
+        book=booksCollection.find_one({'_id':ObjectId(str(id))})
+        judul=book['judul']        
+        return render_template("tambah catatan.html",judul=judul,username=session['username'])
+    return redirect(url_for('login'))
+
 @app.route('/buku/<id>/pembacaan',methods=['GET'])
 def pembacaan(id):
     if 'username' in session:
-        notes=[{ 
-            'tanggal':"11-10-2020",
-            'konten' : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ea iure assumenda itaque amet laboriosam dicta, aliquam placeat alias omnis magnam, error voluptate deleniti eaque, a asperiores ducimus magni? Consectetur."
-            },
-            { 
-            'tanggal':"10-20-2020",
-            'konten' : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis ea iure assumenda itaque amet laboriosam dicta, aliquam placeat alias omnis magnam, error voluptate deleniti eaque, a asperiores ducimus magni? Consectetur."
-            }]
         booksCollection = mongo.db.books
         book=booksCollection.find_one({'_id':ObjectId(str(id))})
         judul=book['judul']
-        return render_template("pembacaan.html",username=session['username'],notes=notes,judul=judul)
+
+        notesCollection = mongo.db.notes
+        notes = notesCollection.find({'book_id':id})
+
+        return render_template("pembacaan.html",book=book,username=session['username'],notes=notes,judul=judul)
     return redirect(url_for('login'))
 
 
